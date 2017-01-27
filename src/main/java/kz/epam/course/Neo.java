@@ -8,8 +8,7 @@ import java.util.Arrays;
  */
 //с двумерным массивом и вызовом методов.
 public class Neo {
-    private int[][] mtr;
-    private int[][] mS;
+    private int[][] matrix;
     private int n;
     private int m;
 
@@ -17,26 +16,28 @@ public class Neo {
     public Neo(int n, int m) {
         this.n = n;
         this.m = m;
-        mtr = new int[n][m];
+        this.matrix = new int[n][m];//уточнение какой матрицы
 
     }
 
     public void fill() {
-        for (int n = 0; n < mtr.length; n++) {
-            for (int m = 0; m < mtr[0].length; m++) {// беру длину всегда с 1 строки
-                mtr[n][m] = (int) (Math.random() * 10);
-                System.out.print(mtr[n][m] + " ");
+        for (int n = 0; n < matrix.length; n++) {
+            for (int m = 0; m < matrix[0].length; m++) {// беру длину всегда с 1 строки
+                matrix[n][m] = (int) (Math.random() * 10);
+                System.out.print(matrix[n][m] + " ");
             }
         }
         System.out.println();
     }
 
-    public int Mult(Neo m1, Neo m2) {
-
-        Neo mtr = new Neo(m1.n, m2.m)
-
-        mS = new int[mtr.length][mtr.length];
-        //mS = new int[2][2];
+    public NEO Multplay(Neo that) {
+        
+        l = this.n;
+        n = this[0].m;
+        m = that.m;
+        Neo result = new Neo[l][n];
+        
+                      
 
         for (int n = 0; n < mtr1.mtr.length; n++) {
             for (int m = 0; m < mult2.mtr[0].length; m++) {
