@@ -11,80 +11,84 @@ public class Neo {
     private int[][] matrix;
     private int n;
     private int m;
+    private int l;
 
-    //колво строк и колво столбцов
     public Neo(int n, int m) {
         this.n = n;
         this.m = m;
         this.matrix = new int[n][m];//уточнение какой матрицы
-
     }
 
     public void fill() {
         for (int n = 0; n < matrix.length; n++) {
             for (int m = 0; m < matrix[0].length; m++) {// беру длину всегда с 1 строки
                 matrix[n][m] = (int) (Math.random() * 10);
-                System.out.print(matrix[n][m] + " ");
             }
         }
-        System.out.println();
     }
 
-    public NEO Multplay(Neo that) {
-        
-        l = this.n;
-        n = this[0].m;
-        m = that.m;
-        Neo result = new Neo[l][n];
-        
-                      
+    public Neo Multplay(Neo that) {
 
-        for (int n = 0; n < mtr1.mtr.length; n++) {
-            for (int m = 0; m < mult2.mtr[0].length; m++) {
-                mS[a][b] += (mult1.mtr[a]) * +(mult1.mtr[b]) + ((mult2.mtr[b]) * (mult2.mtr[a]));
-                System.out.println(mS[a][b] + " ");
+        l = this.n;
+        m = this.m;
+        n = that.m;
+        Neo result = new Neo(l, n);
+
+        int[][] a = this.matrix;
+        int[][] b = that.matrix;
+        int[][] c = result.matrix;
+
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < n; j++) {
+                c[i][j] = 0;
+                for (int r = 0; r < m; r++) {
+                    c[i][j] = c[i][j] + a[i][r] * b[r][j];
+                }
             }
         }
-        return mS[4][4];
+        return result;
+    }
+
+    public Neo MultOrig(Neo that) {
+        n = this.n;
+        m = that.m;
+        Neo resultorig = new Neo(n, m);
+        int[][] a = this.matrix;
+        int[][] b = that.matrix;
+        int[][] c = resultorig.matrix;
+        for (int n = 0; n < matrix.length; n++) {
+            for (int m = 0; m < matrix[0].length; m++) {
+                c[n][m] += matrix[n][m] * matrix[n][m];
+                System.out.println(matrix[n][m] + " ");
+            }
+        }
+        return resultorig;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder(n * m);
+        str.append("Matrix[").append(n).append(",").append(m).append("]={");
+        for (int n = 0; n < matrix.length; n++) {
+            str.append("\r\n");
+            for (int m = 0; m < matrix[0].length; m++) {
+                str.append(matrix[n][m]).append(" ");
+            }
+        }
+        str.append("\r\n}");
+        return str.toString();
     }
 }
 
-    class NeoTest {
-        public static void main(String[] args) {
-            Neo m1 = new Neo(2, 2);
-            m1.fill();
-            Neo m2 = new Neo(2, 2);
-            m2.fill();
-            //m1.mult(m1,m2);
-
-
-        }
+class NeoTest {
+    public static void main(String[] args) {
+        Neo m1 = new Neo(4, 4);
+        m1.fill();
+        System.out.println("one = " + m1);
+        Neo m2 = new Neo(4, 4);
+        m2.fill();
+        System.out.println("one = " + m2);
+        Neo res = m1.Multplay(m2);
+        System.out.println(m1.Multplay(m2));
     }
-
-    // без массива, но с костылями.
-    class brr {
-        brr(int a, int b, int c, int d, int e, int f, int g, int h) {//передачи данных матрицыб разбитых на строку
-            int a11 = a;
-            int a12 = b;
-            int a21 = c;
-            int a22 = d;
-            int b11 = e;
-            int b12 = f;
-            int b21 = g;
-            int b22 = h;
-            int c11, c12, c21, c22;//result
-
-            c11 = (a11 * b11) + (a12 * b21);
-            c12 = (a11 * b12) + (a12 * b22);
-            c21 = (a21 * b11) + (a22 * b21);
-            c22 = (a21 * b12) + (a22 * b22);
-            System.out.println("{" + c11 + " " + c12 + " " + c21 + " " + c22 + "}");
-        }
-    }
-
-    //тест
-    class brrtest {
-        public static void main(String[] args) {
-            brr test = new brr(21, 12, 2, 8, 51, 16, 70, 8);
-        }
-    }
+}
