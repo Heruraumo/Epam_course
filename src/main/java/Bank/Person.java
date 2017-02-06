@@ -3,7 +3,7 @@ package Bank;
 /**
  * Created by Temir on 05.02.2017.
  */
-public abstract class People {
+public abstract class Person {
     private int sin;
     private byte age;
     private String sex;
